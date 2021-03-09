@@ -33,8 +33,10 @@ app.get("/modules", function(req, res) {
 
 // Add /programme endpoint
 app.get("/programme/:code", function(req, res) {
-    // Return "Programmme <code>"
-    res.send("Programme " + req.params.code);
+    // Call getProgramme on data
+    data.getProgramme(req.params.code, function(programme) {
+        res.json(programme);
+    })
 });
 
 // Add /programmes endpoint
