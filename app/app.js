@@ -23,6 +23,14 @@ app.get("/module/:code", function(req, res) {
     });
 });
 
+// Add /module delete endpoint
+app.delete("/module/:code", function(req, res) {
+    // Call deleteModule on data
+    data.deleteModule(req.params.code, function() {
+        res.send("OK");
+    });
+});
+
 // Add /modules endpoint
 app.get("/modules", function(req, res) {
     // Call getModules on data
