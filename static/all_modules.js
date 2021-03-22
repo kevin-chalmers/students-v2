@@ -17,4 +17,18 @@ mainApp.controller("moduleController", function($scope, $http) {
             });
         });
     };
+
+    $scope.new_module = new Module("", "");
+
+    $scope.createModule = function() {
+        // Send new data to the server
+        $http.post("/modules", $scope.new_module).then(function(response) {
+            // Reset new module
+            $scope.new_module = new Module("", "");
+            // Refresh list of modules
+            $http.get("/modules").then(function(response) {
+                $scope.modules = response.data;
+            });
+        });
+    };
 });
