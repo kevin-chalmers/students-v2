@@ -74,6 +74,14 @@ app.get("/programmes", function(req, res) {
     });
 });
 
+// Add /programmes post endpoint
+app.post("/programmes", function(req, res) {
+    // Call createProgramme on data
+    data.createProgramme(req.body, function() {
+        res.send("OK");
+    });
+});
+
 // Add /student endpoint
 app.get("/student/:id", function(req, res) {
     // Call getStudent on data

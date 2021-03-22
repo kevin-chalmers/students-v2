@@ -257,3 +257,13 @@ exports.createModule = function(module, callback) {
         callback();
     });
 };
+
+// Create a programme in the database
+exports.createProgramme = function(programme, callback) {
+    // Create SQL insert statement
+    var sql = `INSERT INTO Programmes VALUES ('${programme.code}', '${programme.name}')`;
+    // Execute SQL insert statement
+    db.exec(sql, function(err) {
+        callback();
+    });
+};
