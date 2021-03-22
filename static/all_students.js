@@ -14,5 +14,5 @@ mainApp.controller("studentController", function($scope, $http) {
             $scope.selectedStudent = response.data;
             document.getElementById("selected").style.display = "block";
         });
-    };
+    };  
 });
