@@ -3,18 +3,20 @@
 var mainApp = angular.module("mainApp", []);
 
 mainApp.controller("moduleController", function($scope, $http) {
-    $http.get("/modules").then(function(response) {
-        $scope.modules = response.data;
-    });
+    $scope.refresh = function() {
+        $http.get("/modules").then(function(response) {
+            $scope.modules = response.data;
+        });
+    };
+
+    $scope.refresh();
 
     $scope.deleteModule = function(code) {
         // Send a delete message to node server
         // e.g. /module/CMP020L004
         $http.delete("/module/" + code).then(function(response) {
             // Refresh list of modules
-            $http.get("/modules").then(function(response) {
-                $scope.modules = response.data;
-            });
+            $scope.refresh();
         });
     };
 
@@ -26,9 +28,7 @@ mainApp.controller("moduleController", function($scope, $http) {
             // Reset new module
             $scope.new_module = new Module("", "");
             // Refresh list of modules
-            $http.get("/modules").then(function(response) {
-                $scope.modules = response.data;
-            });
+            $scope.refresh();
         });
     };
 });
