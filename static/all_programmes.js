@@ -25,4 +25,18 @@ mainApp.controller("programmeController", function($scope, $http) {
             });
         });
     };
+
+    $scope.new_programme = new Programme("", "");
+
+    $scope.createProgramme = function() {
+        // Send data to the server
+        $http.post("/programmes", $scope.new_programme).then(function(response) {
+            // Reset new_programme
+            $scope.new_programme = new Programme("", "");
+            // Refresh programme list
+            $http.get("/programmes").then(function(response) {
+                $scope.programmes = response.data;
+            });
+        });  
+    };
 });
