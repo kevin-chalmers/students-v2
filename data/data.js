@@ -227,3 +227,13 @@ exports.deleteModule = function(code, callback) {
         callback();
     });
 };
+
+// Delete a programme from the database
+exports.deleteProgramme = function(code, callback) {
+    // Create SQL delete statement
+    var sql = `DELETE FROM Programmes WHERE code='${code}'`;
+    // Execute SQL delete statement
+    db.exec(sql, function(err) {
+        callback();
+    });
+};

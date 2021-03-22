@@ -47,6 +47,14 @@ app.get("/programme/:code", function(req, res) {
     })
 });
 
+// Add /programme delete endpoing
+app.delete("/programme/:code", function(req, res) {
+    // Call deleteProgramme on data
+    data.deleteProgramme(req.params.code, function() {
+        res.send("OK");
+    });
+});
+
 // Add /programmes endpoint
 app.get("/programmes", function(req, res) {
     // Call getProgrammes on data
