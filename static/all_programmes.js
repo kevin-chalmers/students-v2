@@ -15,4 +15,14 @@ mainApp.controller("programmeController", function($scope, $http) {
             document.getElementById("selected").style.display = "block";
         });
     };
+
+    $scope.deleteProgramme = function(code) {
+        // Send delete to server
+        $http.delete("/programme/" + code).then(function(response) {
+            // Refresh list of programmes
+            $http.get("/programmes").then(function(response) {
+                $scope.programmes = response.data;
+            });
+        });
+    };
 });
