@@ -15,6 +15,9 @@ var app = express();
 // Add static files location
 app.use(express.static("static"));
 
+// Add JSON parsing for incoming data
+app.use(express.json());
+
 // Add /module endpoint
 app.get("/module/:code", function(req, res) {
     // Call getModule on data
@@ -36,6 +39,14 @@ app.get("/modules", function(req, res) {
     // Call getModules on data
     data.getModules(function(modules) {
         res.json(modules);
+    });
+});
+
+// Add /modules post endpoint
+app.post("/modules", function(req, res) {
+    // Call createModule on data
+    data.createModule(req.body, function() {
+        res.send("OK");
     });
 });
 

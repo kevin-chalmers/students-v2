@@ -247,3 +247,13 @@ exports.deleteStudent = function(id, callback) {
         callback();
     });
 };
+
+// Create a module in the database
+exports.createModule = function(module, callback) {
+    // Create SQL insert statement
+    var sql = `INSERT INTO Modules VALUES ('${module.code}', '${module.name}')`;
+    // Execute SQL insert statement
+    db.exec(sql, function(err) {
+        callback();
+    });
+};
