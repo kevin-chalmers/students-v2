@@ -71,6 +71,14 @@ app.get("/student/:id", function(req, res) {
     });
 });
 
+// Add /student delete endpoint
+app.delete("/student/:id", function(req, res) {
+    // Call deleteStudent on data
+    data.deleteStudent(req.params.id, function() {
+        res.send("OK");
+    });
+});
+
 // Add /students endpoint
 app.get("/students", function(req, res) {
     // Call getStudents on data

@@ -237,3 +237,13 @@ exports.deleteProgramme = function(code, callback) {
         callback();
     });
 };
+
+// Delete a student from the database
+exports.deleteStudent = function(id, callback) {
+    // Create SQL delete statement
+    var sql = `DELETE FROM Students WHERE id=${id}`;
+    // Execute SQL delete statement
+    db.exec(sql, function(err) {
+        callback();
+    });
+};
